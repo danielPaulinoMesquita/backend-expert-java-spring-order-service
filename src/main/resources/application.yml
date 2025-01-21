@@ -5,7 +5,3 @@ spring:
     config:
       name: 'order-service-api'
       uri: ${CONFIG_SERVER_URI:http://localhost:8888}
-  datasource:
-    url: ${AZURE_URL}
-    username: ${AZURE_USERNAME}
-    password: ${AZURE_PASSWORD}

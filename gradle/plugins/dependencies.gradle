@@ -45,8 +45,12 @@ dependencies {
         because('Starter para validação de dados com o Spring Validation')
     }
 
-    implementation('mysql:mysql-connector-java:8.0.32') {
-        because('Driver JDBC para conexão com o MySQL')
+//    implementation('mysql:mysql-connector-java:8.0.32') {
+//        because('Driver JDBC para conexão com o MySQL')
+//    }
+
+    implementation('com.microsoft.sqlserver:mssql-jdbc:12.8.1.jre11') {
+        because("Biblioteca para sql server do azure")
     }
 
     implementation('br.com.daniel.userservicelib:commons-lib:1.0.0') {
@@ -58,9 +62,9 @@ dependencies {
     }
 
     // Aqui ele coloca um banco de dados embarcado que no caso é o H2 para haver conexão com um banco de dados
-    compileOnly('com.h2database:h2') {
-        because('Banco de dados H2 para testes em memória')
-    }
+//    compileOnly('com.h2database:h2') {
+//        because('Banco de dados H2 para testes em memória')
+//    }
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
