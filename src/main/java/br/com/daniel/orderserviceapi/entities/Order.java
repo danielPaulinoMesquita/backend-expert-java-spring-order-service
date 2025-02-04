@@ -1,4 +1,5 @@
 package br.com.daniel.orderserviceapi.entities;
+import br.com.userservice.commonslib.model.enums.OrderStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +33,11 @@ public class Order implements Serializable {
 
     @Column(nullable = false, length = 3000)
     private String description;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private OrderStatusEnum status = OrderStatusEnum.OPEN;
+
     private LocalDateTime createdAt = LocalDateTime.now();
     private LocalDateTime closedAt;
 }
