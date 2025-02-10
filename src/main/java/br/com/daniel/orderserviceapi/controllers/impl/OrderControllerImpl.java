@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RestController
 @RequiredArgsConstructor
 public class OrderControllerImpl implements OrderController {
@@ -29,6 +30,7 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public ResponseEntity<Void> save(CreateOrderRequest request) {
+        orderService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
