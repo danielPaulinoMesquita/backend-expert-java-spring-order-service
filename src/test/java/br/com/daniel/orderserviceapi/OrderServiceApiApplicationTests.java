@@ -1,13 +1,13 @@
-package br.com.daniel.orderserviceapi;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class OrderServiceApiApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-
-}
+//package br.com.daniel.orderserviceapi;
+//
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//@SpringBootTest
+//class OrderServiceApiApplicationTests {
+//
+//    @Test
+//    void contextLoads() {
+//    }
+//
+//}

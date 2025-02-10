@@ -8,16 +8,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@RequiredArgsConstructor
-public class OrderServiceApiApplication implements CommandLineRunner {
+public class OrderServiceApiApplication {
 
-    private final OrderRepository orderRepository;
-
-    @Override
-    public void run(String... args) throws Exception {
-        // run belongs to CommandLineRunner, is one way to execute instructions when application is starting
-        orderRepository.save(new Order(null, "1","2","Order 1","Description of order", null, null));
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//        // run belongs to CommandLineRunner, is one way to execute instructions when application is starting
+//       // orderRepository.save(new Order(null, "1","2","Order 1","Description of order", null, null));
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(OrderServiceApiApplication.class, args);
