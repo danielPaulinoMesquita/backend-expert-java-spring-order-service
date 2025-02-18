@@ -2,6 +2,7 @@ package br.com.daniel.orderserviceapi.controllers;
 
 import br.com.userservice.commonslib.model.exceptions.StandardError;
 import br.com.userservice.commonslib.model.requests.CreateOrderRequest;
+import br.com.userservice.commonslib.model.requests.UpdateOrderRequest;
 import br.com.userservice.commonslib.model.responses.OrderResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -77,6 +78,30 @@ public interface OrderController {
     @PostMapping
     ResponseEntity<Void> save(
             @Valid @RequestBody final CreateOrderRequest request
+    );
+
+    @Operation(summary = "Update order")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Order updated"),
+            @ApiResponse(
+                    responseCode = "400", description = "Bad request",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class))
+            ),
+            @ApiResponse(
+                    responseCode = "404", description = "Not found",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class))
+            ),
+            @ApiResponse(
+                    responseCode = "500", description = "Internal server error",
+                    content = @Content(mediaType = APPLICATION_JSON_VALUE, schema = @Schema(implementation = StandardError.class))
+            )
+    })
+    @PutMapping("/{id}")
+    ResponseEntity<OrderResponse> update(
+            @Parameter(description = "Order Id", required = true, example = "10")
+            @PathVariable(name = "id") Long id,
+            @Parameter(description = "Update order request", required = true)
+            @Valid @RequestBody final UpdateOrderRequest request
     );
 
 }

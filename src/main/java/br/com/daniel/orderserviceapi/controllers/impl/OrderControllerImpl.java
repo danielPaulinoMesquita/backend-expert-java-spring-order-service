@@ -3,6 +3,7 @@ package br.com.daniel.orderserviceapi.controllers.impl;
 import br.com.daniel.orderserviceapi.controllers.OrderController;
 import br.com.daniel.orderserviceapi.service.OrderService;
 import br.com.userservice.commonslib.model.requests.CreateOrderRequest;
+import br.com.userservice.commonslib.model.requests.UpdateOrderRequest;
 import br.com.userservice.commonslib.model.responses.OrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,5 +33,10 @@ public class OrderControllerImpl implements OrderController {
     public ResponseEntity<Void> save(CreateOrderRequest request) {
         orderService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @Override
+    public ResponseEntity<OrderResponse> update(Long id, UpdateOrderRequest request) {
+        return ResponseEntity.ok().body(orderService.update(id, request));
     }
 }
