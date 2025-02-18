@@ -43,7 +43,7 @@ public class OrderServiceImpl implements OrderService {
         var entity = findById(id);
         entity = orderMapper.fromRequest(entity, request);
 
-        if (request.status().equals(OrderStatusEnum.CLOSED.getDescription())){
+        if (entity.getStatus().equals(OrderStatusEnum.CLOSED)){
             entity.setClosedAt(LocalDateTime.now());
         }
 

@@ -1,6 +1,7 @@
 package br.com.daniel.orderserviceapi.controllers.impl;
 
 import br.com.daniel.orderserviceapi.controllers.OrderController;
+import br.com.daniel.orderserviceapi.mapper.OrderMapper;
 import br.com.daniel.orderserviceapi.service.OrderService;
 import br.com.userservice.commonslib.model.requests.CreateOrderRequest;
 import br.com.userservice.commonslib.model.requests.UpdateOrderRequest;
@@ -18,10 +19,11 @@ import java.util.List;
 public class OrderControllerImpl implements OrderController {
 
     private final OrderService orderService;
+    private final OrderMapper orderMapper;
 
     @Override
     public ResponseEntity<OrderResponse> findById(Long id) {
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.ok(orderMapper.fromEntity(orderService.findById(id)));
     }
 
     @Override
