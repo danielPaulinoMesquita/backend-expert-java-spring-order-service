@@ -28,7 +28,7 @@ public class OrderControllerImpl implements OrderController {
 
     @Override
     public ResponseEntity<List<OrderResponse>> findAll() {
-        return null;
+        return ResponseEntity.ok().body(orderMapper.fromEntities(orderService.findAll()));
     }
 
     @Override

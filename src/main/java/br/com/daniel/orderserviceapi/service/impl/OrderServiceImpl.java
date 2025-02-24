@@ -14,6 +14,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Log4j2
 @Service
@@ -53,5 +54,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void deleteById(Long id) {
         orderRepository.delete(findById(id));
+    }
+
+    @Override
+    public List<Order> findAll() {
+        return orderRepository.findAll();
     }
 }
