@@ -49,4 +49,9 @@ public class OrderServiceImpl implements OrderService {
 
         return orderMapper.fromEntity(orderRepository.save(entity));
     }
+
+    @Override
+    public void deleteById(Long id) {
+        orderRepository.delete(findById(id));
+    }
 }

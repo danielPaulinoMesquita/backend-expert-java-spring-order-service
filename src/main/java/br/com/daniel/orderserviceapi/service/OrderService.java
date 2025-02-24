@@ -11,5 +11,7 @@ public interface OrderService {
 
     void save(CreateOrderRequest createOrderRequest);
 
-    OrderResponse update(Long id, UpdateOrderRequest request);
+    OrderResponse update(final Long id, UpdateOrderRequest request);
+
+    void deleteById(final Long id);
 }
