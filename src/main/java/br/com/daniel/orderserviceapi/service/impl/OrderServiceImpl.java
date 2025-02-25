@@ -1,5 +1,6 @@
 package br.com.daniel.orderserviceapi.service.impl;
 
+import br.com.daniel.orderserviceapi.clients.UserServiceFeignClient;
 import br.com.daniel.orderserviceapi.entities.Order;
 import br.com.daniel.orderserviceapi.mapper.OrderMapper;
 import br.com.daniel.orderserviceapi.repositories.OrderRepository;
@@ -26,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
+    private final UserServiceFeignClient userServiceFeignClient;
 
     @Override
     public Order findById(final Long id) {
@@ -38,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void save(CreateOrderRequest createOrderRequest) {
+        validateString(createOrderRequest.requesterId());
         final var entity = orderRepository.save(orderMapper.fromRequest(createOrderRequest));
         log.info("Order saved: {}", entity);
     }
@@ -68,5 +71,15 @@ public class OrderServiceImpl implements OrderService {
     public Page<Order> findAllPaginated(Integer page, Integer linesPerPage, String direction, String orderBy) {
         PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return orderRepository.findAll(pageRequest);
+    }
+
+    void validateString(final String userId) {
+        final var response = userServiceFeignClient.findById(userId).getBody();
+
+        log.info("User found: {}", response);
+        if(response == null) {
+            throw new ResourceNotFoundException("User not found");
+        }
+
     }
 }
