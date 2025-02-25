@@ -10,6 +10,7 @@ import br.com.userservice.commonslib.model.exceptions.ResourceNotFoundException;
 import br.com.userservice.commonslib.model.requests.CreateOrderRequest;
 import br.com.userservice.commonslib.model.requests.UpdateOrderRequest;
 import br.com.userservice.commonslib.model.responses.OrderResponse;
+import br.com.userservice.commonslib.model.responses.UserResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -40,7 +41,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void save(CreateOrderRequest createOrderRequest) {
-        validateString(createOrderRequest.requesterId());
+        final var requester = validateString(createOrderRequest.requesterId());
+        final var customer = validateString(createOrderRequest.requesterId());
+
+        log.info("Requester: {}", requester);
+        log.info("Customer: {}", customer);
+
         final var entity = orderRepository.save(orderMapper.fromRequest(createOrderRequest));
         log.info("Order saved: {}", entity);
     }
@@ -73,8 +79,7 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll(pageRequest);
     }
 
-    void validateString(final String userId) {
-        final var response = userServiceFeignClient.findById(userId).getBody();
-        log.info("User found: {}", response);
+    UserResponse validateString(final String userId) {
+        return userServiceFeignClient.findById(userId).getBody();
     }
 }
