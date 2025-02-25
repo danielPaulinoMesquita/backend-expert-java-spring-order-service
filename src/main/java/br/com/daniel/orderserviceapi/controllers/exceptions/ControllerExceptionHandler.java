@@ -1,31 +1,32 @@
-//package br.com.daniel.orderserviceapi.controllers.exceptions;
-//
-//import br.com.userservice.commonslib.model.exceptions.ResourceNotFoundException;
-//import br.com.userservice.commonslib.model.exceptions.StandardError;
-//import br.com.userservice.commonslib.model.exceptions.ValidationException;
-//import jakarta.servlet.http.HttpServletRequest;
-//import org.springframework.dao.DataIntegrityViolationException;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
-//import org.springframework.validation.FieldError;
-//import org.springframework.web.bind.annotation.ExceptionHandler;
-//import org.springframework.web.bind.annotation.RestControllerAdvice;
-//
-//import java.util.ArrayList;
-//import java.util.Map;
-//
-//import static java.time.LocalDateTime.now;
-//import static org.springframework.http.HttpStatus.*;
-//
-//@RestControllerAdvice
-//public class ControllerExceptionHandler {
-//
-//    @ExceptionHandler(GenericFeignException.class)
-//    ResponseEntity<Map> handleGenericFeignException(
-//            final GenericFeignException ex
-//    ) {
-//        return ResponseEntity.status(ex.getStatus()).body(ex.getError());
-//    }
+package br.com.daniel.orderserviceapi.controllers.exceptions;
+
+import br.com.userservice.commonslib.model.exceptions.GenericFeignException;
+import br.com.userservice.commonslib.model.exceptions.ResourceNotFoundException;
+import br.com.userservice.commonslib.model.exceptions.StandardError;
+import br.com.userservice.commonslib.model.exceptions.ValidationException;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.support.MethodArgumentNotValidException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import static java.time.LocalDateTime.now;
+import static org.springframework.http.HttpStatus.*;
+
+@RestControllerAdvice
+public class ControllerExceptionHandler {
+
+    @ExceptionHandler(GenericFeignException.class)
+    ResponseEntity<Map> handleGenericFeignException(
+            final GenericFeignException ex
+    ) {
+        return ResponseEntity.status(ex.getStatus()).body(ex.getError());
+    }
 //
 //    @ExceptionHandler(ResourceNotFoundException.class)
 //    ResponseEntity<StandardError> handleNotFoundException(
@@ -76,4 +77,4 @@
 //
 //        return ResponseEntity.badRequest().body(error);
 //    }
-//}
+}

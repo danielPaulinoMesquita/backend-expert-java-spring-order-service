@@ -75,11 +75,6 @@ public class OrderServiceImpl implements OrderService {
 
     void validateString(final String userId) {
         final var response = userServiceFeignClient.findById(userId).getBody();
-
         log.info("User found: {}", response);
-        if(response == null) {
-            throw new ResourceNotFoundException("User not found");
-        }
-
     }
 }
