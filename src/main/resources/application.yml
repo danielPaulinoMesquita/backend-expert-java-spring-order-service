@@ -1,13 +1,15 @@
 spring:
   application:
     name: 'order-service-api'
+  profiles:
+    active: ${PROFILE_ACTIVE}
   cloud:
     config:
       name: 'order-service-api'
-      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
+      uri: 'config-server'
   rabbitmq:
     host: ${RABBITMQ_HOST:localhost}
     port: ${RABBITMQ_PORT:5672}
     username: ${RABBITMQ_USERNAME:guest}
     password: ${RABBITMQ_PASSWORD:guest}
-    connection-timeout: 10000
+    connection-timeout: ${RABBITMQ_CONNECTION_TIMEOUT:10000}
